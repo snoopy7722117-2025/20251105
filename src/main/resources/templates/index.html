@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struts to Spring Boot Migration</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to Spring Boot Application</h1>
+            <p>This application demonstrates migration from Struts 1.0 to Spring Boot</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>Migration Highlights</h2>
+                <ul>
+                    <li><strong>Struts Action → Spring MVC Controller</strong>: Action classes are replaced with @Controller annotated classes</li>
+                    <li><strong>struts-config.xml → Annotations</strong>: XML configuration replaced with Java annotations like @RequestMapping</li>
+                    <li><strong>ActionForm → Model/Entity</strong>: ActionForm beans replaced with JPA entities and DTOs</li>
+                    <li><strong>JSP → Thymeleaf</strong>: JSP templates replaced with modern Thymeleaf templates</li>
+                    <li><strong>DAO Pattern → Spring Data JPA</strong>: Manual DAO implementation replaced with Spring Data repositories</li>
+                </ul>
+            </div>
+
+            <div class="actions">
+                <a th:href="@{/users}" class="button">View Users</a>
+            </div>
+        </main>
+
+        <footer>
+            <p>Spring Boot 3.2.0 - Modern Java Web Application</p>
+        </footer>
+    </div>
+</body>
+</html>
