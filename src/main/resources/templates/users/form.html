@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${user.id != null ? 'Edit User' : 'Create User'}">User Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 th:text="${user.id != null ? 'Edit User' : 'Create New User'}">User Form</h1>
+            <nav>
+                <a th:href="@{/}">Home</a> | 
+                <a th:href="@{/users}">Users</a>
+            </nav>
+        </header>
+
+        <main>
+            <div class="form-container">
+                <form th:action="${user.id != null ? '/users/' + user.id : '/users'}" 
+                      th:object="${user}" 
+                      method="post">
+                    
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" 
+                               id="username" 
+                               th:field="*{username}" 
+                               class="form-control"
+                               th:classappend="${#fields.hasErrors('username')} ? 'error' : ''">
+                        <span class="error-message" 
+                              th:if="${#fields.hasErrors('username')}" 
+                              th:errors="*{username}">Username error</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" 
+                               id="name" 
+                               th:field="*{name}" 
+                               class="form-control"
+                               th:classappend="${#fields.hasErrors('name')} ? 'error' : ''">
+                        <span class="error-message" 
+                              th:if="${#fields.hasErrors('name')}" 
+                              th:errors="*{name}">Name error</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" 
+                               id="email" 
+                               th:field="*{email}" 
+                               class="form-control"
+                               th:classappend="${#fields.hasErrors('email')} ? 'error' : ''">
+                        <span class="error-message" 
+                              th:if="${#fields.hasErrors('email')}" 
+                              th:errors="*{email}">Email error</span>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="button">
+                            <span th:text="${user.id != null ? 'Update User' : 'Create User'}">Submit</span>
+                        </button>
+                        <a th:href="@{/users}" class="button button-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="info-box">
+                <h3>Form Validation (Spring Boot vs Struts)</h3>
+                <p><strong>Struts 1.0:</strong> Validation done in ActionForm.validate() or using Validator framework</p>
+                <p><strong>Spring Boot:</strong> Uses JSR-303/Bean Validation annotations (@NotBlank, @Email, @Size, etc.)</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>Spring Boot User Management System</p>
+        </footer>
+    </div>
+</body>
+</html>
